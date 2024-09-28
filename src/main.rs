@@ -41,3 +41,10 @@ fn exact_divisors(dividend:u128, divisors:Vec<u128>) -> Vec<u128> {
     }
     exact_divisors
 }
+
+// This function sums the numbers present in a vector and returns the result.
+
+fn sum_divisors (divisors:Vec<u128>) -> u128 {
+    let sum_divisors: u128 = divisors.iter().sum()
+}
+
