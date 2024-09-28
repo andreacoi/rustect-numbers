@@ -1,12 +1,19 @@
 fn main() {
-    let x = 20;
+    let round = 1000;
     // debug - verify the correctness of my function, step by step.
     // For now, I’m doing this without implementing complex tests.
-    let divisors = total_divisors(x);
-    let exact_divisors = exact_divisors(x, divisors);
-    let x = sum_divisors(&exact_divisors);
-    let y = product_divisors(&exact_divisors);
-    println!("somma: {x}, prodotto: {y}");
+/*     for x in (2..round) {
+        println!("Tentativo {x}:");
+        let divisors = total_divisors(x);
+        let exact_divisors = exact_divisors(x, divisors);
+        let y = sum_divisors(&exact_divisors);
+        let z = product_divisors(&exact_divisors);
+        if compare_results(&x, &y, &z) == true {
+            println!("{x} is a Perfect number!");
+        } else {
+            println!("nope.");
+        }
+    } */
 }
 
 
@@ -55,3 +62,13 @@ fn product_divisors(divisors:&Vec<u128>) -> u128 {
     let product_divisors: u128 = divisors.iter().product();
     product_divisors
 }
+
+// This function compares values and returns the comparison result.
+fn compare_results(number_to_check:&u128, sum:&u128, product:&u128) -> bool {
+    if &number_to_check == &sum && &number_to_check == &product {
+        true
+    } else {
+        false
+    }
+}
+
