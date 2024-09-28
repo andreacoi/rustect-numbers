@@ -1,17 +1,14 @@
 fn main() {
-    let round = 10;
+    let round = 1000000000000;
     // debug - verify the correctness of my function, step by step.
     // For now, I’m doing this without implementing complex tests.
-     for x in 2..round {
-        println!("Tentativo {x}:");
+    for x in 2..round {
         let divisors = total_divisors(x);
         let exact_divisors = exact_divisors(x, divisors);
         let y = sum_divisors(&exact_divisors);
-        let z = product_divisors(x, &exact_divisors);
-        if compare_results(&x, &y, &z) == true {
+        if compare_results(&x, &y) == true {
+            println!("Tentativo {x}:");
             println!("{x} is a Perfect number!");
-        } else {
-            println!("nope.");
         }
     }
 }
@@ -57,25 +54,9 @@ fn sum_divisors(divisors:&Vec<u128>) -> u128 {
     sum_divisors
 }
 
-// This function sums the numbers in a vector and returns the result.
-fn product_divisors(dividend: u128, divisors:&Vec<u128>) -> u128 {
-
-    // To address the overflow issue, I perform a double-check. 
-    // If the sum of the divisors differs from the original number, 
-    // there's no point in calculating the product, so I pre-check 
-    // if the sum equals the original number before proceeding with the product.
-
-    let mut product_divisors: u128 = 0;
-    let sum_divisors: u128 = sum_divisors(divisors);
-    if dividend == sum_divisors {
-        product_divisors = divisors.iter().product();
-    };
-    product_divisors
-}
-
 // This function compares values and returns the comparison result.
-fn compare_results(number_to_check:&u128, sum:&u128, product:&u128) -> bool {
-    if &number_to_check == &sum && &number_to_check == &product {
+fn compare_results(number_to_check:&u128, sum:&u128) -> bool {
+    if &number_to_check == &sum {
         true
     } else {
         false
