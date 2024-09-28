@@ -1,8 +1,10 @@
 fn main() {
+    // let x = 10;
     // debug - verify the correctness of my function, step by step.
     // For now, I’m doing this without implementing complex tests.
-    // let dividers = total_dividers(10);
-    // println!("{:?}", dividers);
+    // let divisors = total_divisors(x);
+    // let exact_divisors = exact_divisors(x, divisors);
+    // println!("{:?}", exact_divisors);
 }
 
 
@@ -15,7 +17,7 @@ fn total_divisors(starting_number:u128) -> Vec<u128> {
     
     // use a reverse for loop to iterate over the divisors.
     // For each of them, use push to insert it into the vector in each round.
-    for x in (2..starting_number).rev() {
+    for x in (1..starting_number).rev() {
         divisors.push(x);
     }
     divisors 
@@ -26,7 +28,7 @@ fn total_divisors(starting_number:u128) -> Vec<u128> {
 // An exact divisor is calculated within this function using Rust's built-in modulo function.
 // So, IF dividend % divisor == 0, then the divisor is exact.
 // If the divisor is exact, I insert it into a list of exact divisors (vector).
-fn exact_dividers(dividend:u128, divisors:Vec<u128>) -> Vec<u128> {
+fn exact_divisors(dividend:u128, divisors:Vec<u128>) -> Vec<u128> {
 
     // initialize an empty vector to store the results of the calculated exact divisors.
     let mut exact_divisors = Vec::new();
