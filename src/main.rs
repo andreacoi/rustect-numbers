@@ -1,10 +1,12 @@
 fn main() {
-    // let x = 10;
+    let x = 20;
     // debug - verify the correctness of my function, step by step.
     // For now, I’m doing this without implementing complex tests.
-    // let divisors = total_divisors(x);
-    // let exact_divisors = exact_divisors(x, divisors);
-    // println!("{:?}", exact_divisors);
+    let divisors = total_divisors(x);
+    let exact_divisors = exact_divisors(x, divisors);
+    let x = sum_divisors(&exact_divisors);
+    let y = product_divisors(&exact_divisors);
+    println!("somma: {x}, prodotto: {y}");
 }
 
 
@@ -42,9 +44,14 @@ fn exact_divisors(dividend:u128, divisors:Vec<u128>) -> Vec<u128> {
     exact_divisors
 }
 
-// This function sums the numbers present in a vector and returns the result.
-
-fn sum_divisors (divisors:Vec<u128>) -> u128 {
-    let sum_divisors: u128 = divisors.iter().sum()
+// This function sums the numbers in a vector and returns the result.
+fn sum_divisors(divisors:&Vec<u128>) -> u128 {
+    let sum_divisors: u128 = divisors.iter().sum();
+    sum_divisors
 }
 
+// This function sums the numbers in a vector and returns the result.
+fn product_divisors(divisors:&Vec<u128>) -> u128 {
+    let product_divisors: u128 = divisors.iter().product();
+    product_divisors
+}
