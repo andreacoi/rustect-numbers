@@ -1,16 +1,10 @@
+// include the std library for command-line argument parsing.
+use std::env;
+
+
 fn main() {
-    let round = 1000000000000;
-    // debug - verify the correctness of my function, step by step.
-    // For now, I’m doing this without implementing complex tests.
-    for x in 2..round {
-        let divisors = total_divisors(x);
-        let exact_divisors = exact_divisors(x, divisors);
-        let y = sum_divisors(&exact_divisors);
-        if compare_results(&x, &y) == true {
-            println!("Tentativo {x}:");
-            println!("{x} is a Perfect number!");
-        }
-    }
+    // fetch the args using env library, store them in a vector made up of string.
+    let args:Vec<String> = env::args().collect();
 }
 
 
@@ -62,4 +56,19 @@ fn compare_results(number_to_check:&u128, sum:&u128) -> bool {
         false
     }
 }
+fn help() {
+    println!("
 
+██████╗ ██╗   ██╗███████╗████████╗███████╗ ██████╗████████╗    ███╗   ██╗██╗   ██╗███╗   ███╗██████╗ ███████╗██████╗ ███████╗
+██╔══██╗██║   ██║██╔════╝╚══██╔══╝██╔════╝██╔════╝╚══██╔══╝    ████╗  ██║██║   ██║████╗ ████║██╔══██╗██╔════╝██╔══██╗██╔════╝
+██████╔╝██║   ██║███████╗   ██║   █████╗  ██║        ██║       ██╔██╗ ██║██║   ██║██╔████╔██║██████╔╝█████╗  ██████╔╝███████╗
+██╔══██╗██║   ██║╚════██║   ██║   ██╔══╝  ██║        ██║       ██║╚██╗██║██║   ██║██║╚██╔╝██║██╔══██╗██╔══╝  ██╔══██╗╚════██║
+██║  ██║╚██████╔╝███████║   ██║   ███████╗╚██████╗   ██║       ██║ ╚████║╚██████╔╝██║ ╚═╝ ██║██████╔╝███████╗██║  ██║███████║
+╚═╝  ╚═╝ ╚═════╝ ╚══════╝   ╚═╝   ╚══════╝ ╚═════╝   ╚═╝       ╚═╝  ╚═══╝ ╚═════╝ ╚═╝     ╚═╝╚═════╝ ╚══════╝╚═╝  ╚═╝╚══════╝
+\n\n                                                                                                                               
+Usage: <program_name> -args\n\n
+Arguments:\n
+-c <number> - finds all perfect numbers by iterating up to that <number>\n
+-e <number> - checks if <number> is perfect or not\n
+-h - displays this guide\n");
+}
