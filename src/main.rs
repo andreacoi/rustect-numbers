@@ -5,6 +5,25 @@ use std::env;
 fn main() {
     // fetch the args using env library, store them in a vector made up of string.
     let args:Vec<String> = env::args().collect();
+    if args.len() < 3 {
+        println!("The provided arguments are insufficient.");
+        help();
+    } else {
+        match args.len() {
+            // Prepare the main function to check the arguments, ensuring they are always equal to 3.
+            3 => {
+/*                 match args[1] {
+                    "c" => "cia",
+                    "e" => "ecco",
+                    _ => "prova",
+                    
+                }; */
+            },
+            _ => {
+                help();
+            }
+        }
+    }
 }
 
 
