@@ -11,7 +11,8 @@ fn main() {
     } else {
         match args.len() {
             // Prepare the main function to check the arguments, ensuring they are always equal to 3.
-            3 => {
+            3 => { 
+                // todo: Check the arguments provided by the user and act accordingly.
 /*                 match args[1] {
                     "c" => "cia",
                     "e" => "ecco",
