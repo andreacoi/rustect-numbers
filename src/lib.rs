@@ -1,7 +1,9 @@
 pub mod math {
     // In this function, I extract ALL POSSIBLE DIVISORS, whether they are decimal or perfect divisors.
     // Of course, I start from the number by subtracting one and NATURALLY excluding 0.
-    fn total_divisors(starting_number:u128) -> Vec<u128> {
+    // DEPRECATED AND USELESS FUNCTION - ITERATE OVER EVERY ELIGIBLE DIVISOR AND CHECK MODULO
+    // RESULTS.
+    /*     fn total_divisors(starting_number:u128) -> Vec<u128> {
 
         // initialize an empty vector to store the results of the countdown.
         let mut divisors = Vec::new();
@@ -12,14 +14,15 @@ pub mod math {
             divisors.push(x);
         }
         divisors 
-    }
+    } */
 
     // This function accepts two arguments: the dividend and a list of all divisors.
     // As output, it should return the list of exact divisors.
     // An exact divisor is calculated within this function using Rust's built-in modulo function.
     // So, IF dividend % divisor == 0, then the divisor is exact.
     // If the divisor is exact, I insert it into a list of exact divisors (vector).
-    fn exact_divisors(dividend:u128, divisors:Vec<u128>) -> Vec<u128> {
+    /* DEPRECATED VERSION - NOT NECESSARY AT ALL
+    * fn exact_divisors(dividend:u128, divisors:Vec<u128>) -> Vec<u128> {
 
         // initialize an empty vector to store the results of the calculated exact divisors.
         let mut exact_divisors = Vec::new();
@@ -27,6 +30,18 @@ pub mod math {
         for x in divisors {
             if dividend % x == 0 {
                 // if divisor is exact insert into vector "exact_divisors"
+                exact_divisors.push(x);
+            }
+        }
+        exact_divisors
+    } */
+
+    // Complete rewrite of the function to find exact divisors, avoiding iteration over the entire list of possible divisors.
+    // Solved the issue with an if condition. Fix issue #1
+    fn exact_divisors(starting_number:u128) -> Vec<u128> {
+        let mut exact_divisors = Vec::new();
+        for x in (1..starting_number).rev() {
+            if starting_number % x == 0 {
                 exact_divisors.push(x);
             }
         }
@@ -54,8 +69,7 @@ pub mod math {
         if *number_to_check > 10000 {
             println!("Warning! You have entered a very large number! Even though the program is optimized, it may take a considerable amount of time to determine whether the number you chose is perfect or not.");
         }
-        let t_divisors =  total_divisors(*number_to_check);
-        let e_divisors = exact_divisors(*number_to_check, t_divisors);
+        let e_divisors = exact_divisors(*number_to_check);
         let sum_divisors = sum_divisors(&e_divisors);
         if compare_results(
             &number_to_check, &sum_divisors) == true {
@@ -73,8 +87,7 @@ pub mod math {
         }
 
         for x in 2..*limit_to_check {
-            let t_divisors = total_divisors(x);
-            let e_divisors = exact_divisors(x, t_divisors);
+            let e_divisors = exact_divisors(x);
             let sum_divisors = sum_divisors(&e_divisors);
             if compare_results(&x, &sum_divisors) == true {
                 println!("Attempt {x}: Woohoo! {x} it's a perfect number!");
