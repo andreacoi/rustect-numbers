@@ -65,9 +65,21 @@ pub mod math {
         }
 
     }
-
+    
+    // This function implements the check for perfect numbers starting from 2 up to the user-designated number.
     pub fn counting_check(limit_to_check: &u128) {
+        if *limit_to_check > 1000 {
+            println!("Warning! You have entered a very large number! Even though the program is optimized, it may take a considerable amount of time to determine whether the number you chose is perfect or not.");
+        }
 
+        for x in 2..*limit_to_check {
+            let t_divisors = total_divisors(x);
+            let e_divisors = exact_divisors(x, t_divisors);
+            let sum_divisors = sum_divisors(&e_divisors);
+            if compare_results(&x, &sum_divisors) == true {
+                println!("Attempt {x}: Woohoo! {x} it's a perfect number!");
+            }
+        }
     }
 
 }
