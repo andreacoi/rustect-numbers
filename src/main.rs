@@ -1,28 +1,23 @@
 // include the std library for command-line argument parsing.
 use std::env;
 
-
 fn main() {
     // fetch the args using env library, store them in a vector made up of string.
     let args:Vec<String> = env::args().collect();
-    if args.len() < 3 {
+    if args.len() != 3 {
         println!("The provided arguments are insufficient.");
         help();
     } else {
-        match args.len() {
-            // Prepare the main function to check the arguments, ensuring they are always equal to 3.
-            3 => { 
-                // todo: Check the arguments provided by the user and act accordingly.
-/*                 match args[1] {
-                    "c" => "cia",
-                    "e" => "ecco",
-                    _ => "prova",
-                    
-                }; */
-            },
-            _ => {
-                help();
-            }
+        // Using `match` to parse the literal argument at position 1 of the argument vector.
+        // Position 0 is always reserved for the application name.
+        // Possible cases:
+        // - case `-c`: counts perfect numbers UP TO the given number;
+        // - case `-e`: checks if the provided number is perfect.
+        // Note: `-c` stands for counting and `-e` stands for exact.
+        match &args[1].as_str() {
+            &"-e" => println!("you provided -e arg."),
+            &"-c" => println!("you provided -c arg."),
+            _ => help(),
         }
     }
 }
