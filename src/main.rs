@@ -1,11 +1,13 @@
 // include the std library for command-line argument parsing.
 use std::env;
+
+// Include the `math` module (absolutely) to access the functions that handle the mathematical operations.
 use rustect_numbers::math;
 
 fn main() {
     // fetch the args using env library, store them in a vector made up of string.
     let args:Vec<String> = env::args().collect();
-    math::test();
+     // Ensure that exactly 3 arguments are passed; otherwise, do not run the program and trigger the help guide.
     if args.len() != 3 {
         println!("The provided arguments are insufficient.");
         help();
