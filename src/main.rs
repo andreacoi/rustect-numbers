@@ -24,7 +24,6 @@ fn main() {
         // - case `-e`: checks if the provided number is perfect.
         // Note: `-c` stands for counting and `-e` stands for exact.
         match &args[1].as_str() {
-            &"-e" => math::single_check(&number),
             &"-c" => println!("you provided -c arg."),
             _ => help(),
         }
