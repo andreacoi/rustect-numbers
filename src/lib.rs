@@ -47,6 +47,28 @@ pub mod math {
         false
         }
     }
+    
+    // This function checks if a single number is perfect or not. The number to be checked out is
+    // passed by args in main.
+    pub fn single_check(number_to_check:&u128) {
+        if *number_to_check > 10000 {
+            println!("Warning! You have entered a very large number! Even though the program is optimized, it may take a considerable amount of time to determine whether the number you chose is perfect or not.");
+        }
+        let t_divisors =  total_divisors(*number_to_check);
+        let e_divisors = exact_divisors(*number_to_check, t_divisors);
+        let sum_divisors = sum_divisors(&e_divisors);
+        if compare_results(
+            &number_to_check, &sum_divisors) == true {
+            println!("Woohoo! It's a perfect number!");
+        } else {
+            println!("Nope! Unlucky try! It's a normal number.");
+        }
+
+    }
+
+    pub fn counting_check(limit_to_check: &u128) {
+
+    }
 
 }
 
