@@ -24,7 +24,8 @@ fn main() {
         // - case `-e`: checks if the provided number is perfect.
         // Note: `-c` stands for counting and `-e` stands for exact.
         match &args[1].as_str() {
-            &"-c" => println!("you provided -c arg."),
+            &"-s" => math::single_check(&number),
+            &"-c" => math::counting_check(&number),
             _ => help(),
         }
     }
@@ -44,5 +45,5 @@ fn help() {
 Usage: <program_name> -args\n\n
 Arguments:\n
 -c <number> - finds all perfect numbers by iterating up to that <number>\n
--e <number> - checks if <number> is perfect or not\n");
+-s <number> - checks if <number> is perfect or not\n");
 }
