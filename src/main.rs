@@ -12,6 +12,11 @@ fn main() {
         println!("The provided arguments are insufficient.");
         help();
     } else {
+
+        // I use `u128::from_str_radix` to convert the string from the second argument into a valid `u128`.
+        // This function converts a string to the target base, which in my case is 10.
+        // By using `unwrap()`, I extract the `u128` from the `Result`.
+        let number: u128 = u128::from_str_radix(&args[2], 10).unwrap();
         // Using `match` to parse the literal argument at position 1 of the argument vector.
         // Position 0 is always reserved for the application name.
         // Possible cases:
@@ -19,7 +24,7 @@ fn main() {
         // - case `-e`: checks if the provided number is perfect.
         // Note: `-c` stands for counting and `-e` stands for exact.
         match &args[1].as_str() {
-            &"-e" => println!("you provided -e arg."),
+            &"-e" => math::single_check(&number),
             &"-c" => println!("you provided -c arg."),
             _ => help(),
         }
